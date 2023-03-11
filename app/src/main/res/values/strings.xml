@@ -6,13 +6,4 @@
     <string name="yes_button">Так</string>
     <string name="no_button">Ні</string>
     <string name="start_again_button">Почати знову</string>
-
-    <string name="yellow">Жовтий</string>
-    <string name="red">#Червоний</string>
-    <string name="green">#Зелений</string>
-    <string name="blue">#Синій</string>
-    <string name="purple">#Пурпуровий</string>
-    <string name="pink">#Рожевий</string>
-    <string name="orange">#Оранджевий</string>
-    <string name="black">#Чорний</string>
 </resources>

@@ -7,23 +7,36 @@
     tools:context=".GameActivity">
 
     <TextView
-        android:id="@+id/gameTip"
+        android:id="@+id/timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="128dp"
+        android:text="TextView"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/game_tip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="396dp"
+        android:text="@string/game_tip"
         android:textAlignment="center"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/game_tip" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/colorName"
+        android:id="@+id/color_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
+        android:layout_marginTop="128dp"
         android:text="TextView"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -31,35 +44,35 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/coloredText"
+        android:id="@+id/colored_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="72dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="68dp"
         android:text="TextView"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
 
     <Button
-        android:id="@+id/yesButton"
+        android:id="@+id/yes_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginBottom="64dp"
-        android:backgroundTint="@color/light_blue"
-        android:text="Button"
+        android:text="@string/yes_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/noButton"
+        android:id="@+id/no_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="64dp"
         android:layout_marginBottom="64dp"
-        android:backgroundTint="@color/light_blue"
-        android:text="Button"
+        android:text="@string/no_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
