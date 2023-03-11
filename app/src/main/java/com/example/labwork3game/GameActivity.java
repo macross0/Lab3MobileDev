@@ -63,7 +63,6 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-
         this.startTime = System.currentTimeMillis();
         timerTextView = (TextView) findViewById(R.id.timer);
         timerHandler.postDelayed(timerRunnable, 0);
@@ -75,7 +74,6 @@ public class GameActivity extends AppCompatActivity {
         colors.put("purple", Color.parseColor("#9403fc"));
         colors.put("pink", Color.parseColor("#fc03e3"));
         colors.put("orange", Color.parseColor("#fc5203"));
-
         colorTexts.put("yellow", "Жовтий");
         colorTexts.put("red", "Червоний");
         colorTexts.put("green", "Зелений");
@@ -83,7 +81,6 @@ public class GameActivity extends AppCompatActivity {
         colorTexts.put("purple", "Пурпуровий");
         colorTexts.put("pink", "Рожевий");
         colorTexts.put("orange", "Оранджевий");
-
         colorKeys = colorTexts.keySet().toArray();
 
         boolean yesIsARightAnswer = updateColors();
