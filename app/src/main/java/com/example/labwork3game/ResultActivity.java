@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 public class ResultActivity extends AppCompatActivity {
 
+    Boolean is60SecondsTimer;
+    Boolean showTimer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,6 +19,8 @@ public class ResultActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         Integer result = bundle.getInt("result");
+        is60SecondsTimer = bundle.getBoolean("is60SecondsTimer");
+        showTimer = bundle.getBoolean("showTimer");
         TextView ResultText = findViewById(R.id.result_text);
         ResultText.setText("Результат: " + String.format("%d", result));
 
@@ -30,6 +35,8 @@ public class ResultActivity extends AppCompatActivity {
 
     private void switchToGameActivity() {
         Intent switchToGameActivityIntent = new Intent(this, GameActivity.class);
+        switchToGameActivityIntent.putExtra("is60SecondsTimer", is60SecondsTimer);
+        switchToGameActivityIntent.putExtra("showTimer", showTimer);
         startActivity(switchToGameActivityIntent);
         finish();
     }

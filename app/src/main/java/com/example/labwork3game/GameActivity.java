@@ -1,5 +1,7 @@
 package com.example.labwork3game;
 
+import static java.lang.Math.round;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +14,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -27,34 +30,25 @@ import java.util.Set;
 public class GameActivity extends AppCompatActivity {
 
     TextView timerTextView;
+    ProgressBar progressBar;
     long startTime = 0;
     int score = 0;
     Map<String, Integer> colors = new HashMap<String, Integer>();
     Map<String, String> colorTexts = new HashMap<String, String>();
     Object[] colorKeys;
 
+    boolean is60SecondsTimer;
+    boolean showTimer;
+    Integer countdownTime;
     Handler timerHandler = new Handler();
-    Runnable timerRunnable = new Runnable() {
-        @Override
-        public void run() {
-            long millis = System.currentTimeMillis() - startTime;
-            int seconds = (int) (millis / 1000);
-
-            if (seconds >= 60) {
-                switchToResultActivity(score);
-                finish();
-                return;
-            }
-
-            timerTextView.setText(String.format("%d", seconds));
-            timerHandler.postDelayed(this, 500);
-        }
-    };
+    Runnable timerRunnable;
 
     private void switchToResultActivity(int result) {
         Intent switchToResultActivityIntent = new Intent(this, ResultActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putInt("result", result);
+        switchToResultActivityIntent.putExtra("result", result);
+        switchToResultActivityIntent.putExtra("is60SecondsTimer", is60SecondsTimer);
+        switchToResultActivityIntent.putExtra("showTimer", showTimer);
         switchToResultActivityIntent.putExtras(bundle);
         startActivity(switchToResultActivityIntent);
     }
@@ -65,7 +59,7 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         this.startTime = System.currentTimeMillis();
         timerTextView = (TextView) findViewById(R.id.timer);
-        timerHandler.postDelayed(timerRunnable, 0);
+        progressBar = findViewById(R.id.progressBar);
 
         colors.put("yellow", Color.parseColor("#fcd303"));
         colors.put("red", Color.parseColor("#fc0303"));
@@ -82,6 +76,42 @@ public class GameActivity extends AppCompatActivity {
         colorTexts.put("pink", "Рожевий");
         colorTexts.put("orange", "Оранджевий");
         colorKeys = colorTexts.keySet().toArray();
+
+        Bundle bundle = getIntent().getExtras();
+        is60SecondsTimer = bundle.getBoolean("is60SecondsTimer");
+        showTimer = bundle.getBoolean("showTimer");
+
+        if (is60SecondsTimer) {
+            countdownTime = 60;
+        } else {
+            countdownTime = 15;
+        }
+        if (!showTimer) {
+            timerTextView.setVisibility(View.GONE);
+            progressBar.setVisibility(View.GONE);
+        }
+
+
+        timerRunnable = new Runnable() {
+            @Override
+            public void run() {
+                long millis = System.currentTimeMillis() - startTime;
+                int seconds = (int) (millis / 1000);
+
+                if (seconds >= countdownTime) {
+                    switchToResultActivity(score);
+                    finish();
+                    return;
+                }
+
+                timerTextView.setText(String.format("%d", seconds));
+                int percentage = seconds * 100 / countdownTime;
+                progressBar.setProgress(percentage);
+                timerHandler.postDelayed(this, 500);
+            }
+        };
+
+        timerHandler.postDelayed(timerRunnable, 0);
 
         boolean yesIsARightAnswer = updateColors();
         updateAnswerButtons(yesIsARightAnswer);
