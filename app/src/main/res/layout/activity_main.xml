@@ -6,61 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="6dp" />
-
     <Button
         android:id="@+id/start_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="396dp"
+        android:layout_marginBottom="40dp"
         android:text="@string/start_button"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/game_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="396dp"
+        android:layout_marginTop="40dp"
         android:text="@string/game_info"
         android:textAlignment="center"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="30dp"
         android:checked="true"
         android:text="Показувати таймер"
         app:layout_constraintBottom_toTopOf="@+id/start_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/game_info" />
+        app:layout_constraintEnd_toStartOf="@+id/toggleButton"
+        app:layout_constraintHorizontal_bias="0.119"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ToggleButton
         android:id="@+id/toggleButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
         android:text="ToggleButton"
         android:textOff="60 секунд"
         android:textOn="15 секунд"
         app:layout_constraintBottom_toTopOf="@+id/start_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        app:layout_constraintStart_toEndOf="@+id/checkBox" />
 
     <TextView
         android:id="@+id/textView"
@@ -68,7 +60,61 @@
         android:layout_height="wrap_content"
         android:text="Час зворотнього відліку"
         app:layout_constraintBottom_toTopOf="@+id/toggleButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/toggleButton"
+        app:layout_constraintStart_toStartOf="@+id/toggleButton" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/game_info"
+        tools:layout_editor_absoluteX="1dp">
+
+        <RadioGroup
+            android:id="@+id/usersList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/textView">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:hint="Ім'я">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/usernameInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Електронна пошта" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/addUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Додати користувача" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class ResultActivity extends AppCompatActivity {
 
     Boolean is60SecondsTimer;
     Boolean showTimer;
+    String pickedUserFilename;
+    Button sendResultToEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +24,19 @@ public class ResultActivity extends AppCompatActivity {
         Integer result = bundle.getInt("result");
         is60SecondsTimer = bundle.getBoolean("is60SecondsTimer");
         showTimer = bundle.getBoolean("showTimer");
+        pickedUserFilename = bundle.getString("pickedUserFilename");
         TextView ResultText = findViewById(R.id.result_text);
+
+        sendResultToEmail = findViewById(R.id.sendResultToEmail);
+        sendResultToEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                User user = new User(getApplicationContext(), pickedUserFilename);
+                user.read();
+                user.sendEmail(getApplicationContext(), result);
+            }
+        });
+
         ResultText.setText("Результат: " + String.format("%d", result));
 
         View RestartActivitySwitcher = findViewById(R.id.start_again_button);

@@ -36,6 +36,7 @@ public class GameActivity extends AppCompatActivity {
     Map<String, Integer> colors = new HashMap<String, Integer>();
     Map<String, String> colorTexts = new HashMap<String, String>();
     Object[] colorKeys;
+    String pickedUserFilename;
 
     boolean is60SecondsTimer;
     boolean showTimer;
@@ -47,6 +48,7 @@ public class GameActivity extends AppCompatActivity {
         Intent switchToResultActivityIntent = new Intent(this, ResultActivity.class);
         Bundle bundle = new Bundle();
         switchToResultActivityIntent.putExtra("result", result);
+        switchToResultActivityIntent.putExtra("pickedUserFilename", pickedUserFilename);
         switchToResultActivityIntent.putExtra("is60SecondsTimer", is60SecondsTimer);
         switchToResultActivityIntent.putExtra("showTimer", showTimer);
         switchToResultActivityIntent.putExtras(bundle);
@@ -78,6 +80,7 @@ public class GameActivity extends AppCompatActivity {
         colorKeys = colorTexts.keySet().toArray();
 
         Bundle bundle = getIntent().getExtras();
+        pickedUserFilename = bundle.getString("pickedUserFilename");
         is60SecondsTimer = bundle.getBoolean("is60SecondsTimer");
         showTimer = bundle.getBoolean("showTimer");
 
